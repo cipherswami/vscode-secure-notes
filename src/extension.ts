@@ -1,26 +1,137 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
-import * as vscode from 'vscode';
+import * as vscode from "vscode";
+import { encryptData, decryptData, WrongPasswordError } from "./encryption";
+import { generateEncryptedNote, validateFormat } from "./utils";
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
+  console.log("Secure Notes Extension started!");
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "vscode-secure-notes" is now active!');
+  /**
+   * Encrypt full document
+   */
+  const encryptNote = vscode.commands.registerCommand(
+    "vsc-secure-notes.encrypt",
+    async () => {
+      const editor = vscode.window.activeTextEditor;
+      if (!editor) {
+        return;
+      }
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	const disposable = vscode.commands.registerCommand('vscode-secure-notes.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from Secure Notes!');
-	});
+      const document = editor.document;
+      const text = document.getText();
 
-	context.subscriptions.push(disposable);
+      if (!text) {
+        vscode.window.showErrorMessage("File is empty");
+        return;
+      }
+
+      // prevent double encryption
+      if (validateFormat(text)) {
+        vscode.window.showWarningMessage("File is already encrypted");
+        return;
+      }
+
+      const password = await vscode.window.showInputBox({
+        prompt: "Enter password",
+        password: true,
+      });
+      if (!password) {
+        return;
+      }
+
+      try {
+        const aesOptions = {
+          AesMode: "AES-GCM",
+          KeySize: 256,
+        } as const;
+
+        const encrypted = await encryptData(aesOptions, text, password);
+
+        const wrapped = await generateEncryptedNote(aesOptions, encrypted);
+
+        const fullRange = new vscode.Range(
+          document.positionAt(0),
+          document.positionAt(text.length),
+        );
+
+        await editor.edit((editBuilder) => {
+          editBuilder.replace(fullRange, wrapped);
+        });
+
+        await editor.document.save();
+
+        vscode.window.showInformationMessage("Note Encrypted");
+      } catch (err) {
+        vscode.window.showErrorMessage("Encryption failed");
+        console.error(err);
+      }
+    },
+  );
+
+  /**
+   * Decrypt full document
+   */
+  const decryptNote = vscode.commands.registerCommand(
+    "vsc-secure-notes.decrypt",
+    async () => {
+      const editor = vscode.window.activeTextEditor;
+      if (!editor) {
+        return;
+      }
+
+      const document = editor.document;
+      const text = document.getText();
+
+      if (!text) {
+        vscode.window.showErrorMessage("File is empty");
+        return;
+      }
+
+      const parsed = validateFormat(text);
+
+      if (!parsed) {
+        vscode.window.showErrorMessage("Not a valid encrypted note");
+        return;
+      }
+
+      const password = await vscode.window.showInputBox({
+        prompt: "Enter password",
+        password: true,
+      });
+      if (!password) {
+        return;
+      }
+
+      try {
+        const decrypted = await decryptData(
+          parsed.aesOptions,
+          parsed.data,
+          password,
+        );
+
+        const fullRange = new vscode.Range(
+          document.positionAt(0),
+          document.positionAt(text.length),
+        );
+
+        await editor.edit((editBuilder) => {
+          editBuilder.replace(fullRange, decrypted);
+        });
+
+        await editor.document.save();
+
+        vscode.window.showInformationMessage("Note Decrypted");
+      } catch (err) {
+        if (err instanceof WrongPasswordError) {
+          vscode.window.showErrorMessage("Wrong password");
+        } else {
+          vscode.window.showErrorMessage("Decryption failed");
+          console.error(err);
+        }
+      }
+    },
+  );
+
+  context.subscriptions.push(encryptNote, decryptNote);
 }
 
-// This method is called when your extension is deactivated
 export function deactivate() {}

@@ -1,21 +1,42 @@
 {
-  "name": "vscode-secure-notes",
-  "displayName": "Secure Notes",
-  "description": "Encrypt notes with a password.",
-  "version": "0.0.1",
-  "engines": {
-    "vscode": "^1.110.0"
-  },
+  "name": "vsc-secure-notes",
+  "displayName": "VSC Secure Notes",
+  "description": "Password-protect and encrypt your notes locally with AES.",
+  "version": "1.0.0",
+  "publisher": "cipherswami",
+  "icon": "assets/logo.png",
   "categories": [
     "Other"
   ],
+  "keywords": [
+    "security",
+    "password",
+    "encryption",
+    "Secure Notes"
+  ],
+  "homepage": "https://github.com/cipherswami/vscode-secure-notes",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cipherswami/vscode-secure-notes.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cipherswami/vscode-secure-notes/issues"
+  },
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.110.0"
+  },
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "vscode-secure-notes.helloWorld",
-        "title": "Hello World"
+        "command": "vsc-secure-notes.encrypt",
+        "title": "VSC Secure Notes: Encrypt"
+      },
+      {
+        "command": "vsc-secure-notes.decrypt",
+        "title": "VSC Secure Notes: Decrypt"
       }
     ]
   },
@@ -34,15 +55,15 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.110.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "22.x",
-    "typescript-eslint": "^8.56.1",
+    "@types/vscode": "^1.110.0",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2",
+    "esbuild": "^0.27.4",
     "eslint": "^9.39.3",
-    "esbuild": "^0.27.3",
     "npm-run-all": "^4.1.5",
     "typescript": "^5.9.3",
-    "@vscode/test-cli": "^0.0.12",
-    "@vscode/test-electron": "^2.5.2"
+    "typescript-eslint": "^8.56.1"
   }
 }

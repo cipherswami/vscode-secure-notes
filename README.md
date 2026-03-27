@@ -1,71 +1,44 @@
-# vscode-secure-notes README
+# VSC Secure Notes
 
-This is the README for your extension "vscode-secure-notes". After writing up a brief description, we recommend including the following sections.
+A VS Code port of the Joplin Secure Notes plugin — bring password-based note encryption straight into your editor.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- 🔐 **Encrypt** any open file with a password of your choice
+- 🔓 **Decrypt** encrypted files back to plain text
+- 🛡️ **Strong Encryption** — uses industry-standard AES encryption
+- ⚡ Works fully offline — your data stays on your machine
+- 🔁 Consistent behavior with the Joplin Secure Notes plugin
 
-For example if there is an image subfolder under your extension project workspace:
+## Disclaimer
 
-\!\[feature X\]\(images/feature-x.png\)
+**NO RECOVERY** — If you forget your password, your encrypted notes are permanently lost. There is no way to recover or reset it. Please keep backups of anything important.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+**NO WARRANTIES** — This extension is provided "as is" without any guarantees. While it uses industry-standard AES encryption, no system is 100% secure. The author is not liable for any data loss or security issues.
 
-## Requirements
+**_Use at your own risk. By using this extension, you accept these terms._**
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+## Usage
 
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+1. Open a file or select text
+2. Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`)
+3. Run **`VSC Secure Notes: Encrypt`** or **`VSC Secure Notes: Decrypt`**
+4. Enter your password when prompted
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+- None yet. Found a bug? [Open an issue](https://github.com/cipherswami/vscode-secure-notes/issues)
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+Check [CHANGELOG.md](./CHANGELOG.md) for the full details.
 
-### 1.0.0
+## Related
 
-Initial release of ...
+- 🔗 [Joplin Secure Notes Plugin](https://github.com/cipherswami/joplin-plugin-secure-notes) — the original plugin this is based on
 
-### 1.0.1
+## License
 
-Fixed issue #.
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more details.
 
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Contributions are welcome! Visit the [GitHub repository](https://github.com/cipherswami/vscode-secure-notes) to submit pull requests or suggest new features.
