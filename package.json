@@ -1,18 +1,19 @@
 {
   "name": "vsc-secure-notes",
   "displayName": "VSC Secure Notes",
-  "description": "Password-protect and encrypt your notes locally with AES.",
-  "version": "1.0.0",
+  "description": "Password protect and encrypt your notes locally.",
+  "version": "1.1.0",
   "publisher": "cipherswami",
   "icon": "assets/logo.png",
   "categories": [
     "Other"
   ],
   "keywords": [
+    "Secure Notes",
+    "Joplin port",
     "security",
-    "password",
     "encryption",
-    "Secure Notes"
+    "password"
   ],
   "homepage": "https://github.com/cipherswami/vscode-secure-notes",
   "repository": {
@@ -38,7 +39,31 @@
         "command": "vsc-secure-notes.decrypt",
         "title": "VSC Secure Notes: Decrypt"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "VSC Secure Notes",
+      "properties": {
+        "vsc-secure-notes.aesMode": {
+          "type": "string",
+          "default": "AES-GCM",
+          "enum": [
+            "AES-GCM",
+            "AES-CTR",
+            "AES-CBC"
+          ],
+          "description": "AES mode used when encrypting notes."
+        },
+        "vsc-secure-notes.keySize": {
+          "type": "number",
+          "default": 256,
+          "enum": [
+            256,
+            128
+          ],
+          "description": "AES key size in bits."
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",

@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import { encryptData, decryptData, WrongPasswordError } from "./encryption";
-import { generateEncryptedNote, validateFormat } from "./utils";
+import { generateEncryptedNote, validateFormat, getAesOptions } from "./utils";
 
 export function activate(context: vscode.ExtensionContext) {
   console.log("Secure Notes Extension started!");
@@ -39,10 +39,7 @@ export function activate(context: vscode.ExtensionContext) {
       }
 
       try {
-        const aesOptions = {
-          AesMode: "AES-GCM",
-          KeySize: 256,
-        } as const;
+        const aesOptions = getAesOptions();
 
         const encrypted = await encryptData(aesOptions, text, password);
 

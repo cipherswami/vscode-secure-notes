@@ -1,3 +1,4 @@
+import * as vscode from "vscode";
 import { AesOptions } from "./encryption";
 
 const PLUGIN_ID = "SecureNotes";
@@ -65,5 +66,17 @@ export function validateFormat(
       KeySize: parseInt(sizeMatch[1].trim()) as AesOptions["KeySize"],
     },
     data: dataMatch[1].trim(),
+  };
+}
+
+/**
+ * Funtion to fetch AesOptions form the VS Code settings.
+ * @returns AesOptions
+ */
+export function getAesOptions(): AesOptions {
+  const config = vscode.workspace.getConfiguration("vsc-secure-notes");
+  return {
+    AesMode: config.get<"AES-GCM">("aesMode", "AES-GCM"),
+    KeySize: config.get<128 | 256>("keySize", 256),
   };
 }

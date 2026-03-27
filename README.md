@@ -1,13 +1,13 @@
 # VSC Secure Notes
 
-A VS Code port of the Joplin Secure Notes plugin — bring password-based note encryption straight into your editor.
+A VS Code port of the [Joplin Secure Notes plugin](https://github.com/cipherswami/joplin-plugin-secure-notes) — bring password-based note encryption straight into your editor.
 
 ## Features
 
-- 🔐 **Encrypt** any open file with a password of your choice
-- 🔓 **Decrypt** encrypted files back to plain text
-- 🛡️ **Strong Encryption** — uses industry-standard AES encryption
-- ⚡ Works fully offline — your data stays on your machine
+- 🔐 **Encrypt** - Encrypt any file with a password of your choice
+- 🔓 **Decrypt** - Decrypt the encrypted file back to normal
+- 🛡️ **Strong Encryption** — Uses industry-standard AES encryption
+- ⚡ Works fully offline, your data stays on your machine
 - 🔁 Consistent behavior with the Joplin Secure Notes plugin
 
 ## Disclaimer
@@ -20,14 +20,9 @@ A VS Code port of the Joplin Secure Notes plugin — bring password-based note e
 
 ## Usage
 
-1. Open a file or select text
-2. Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`)
-3. Run **`VSC Secure Notes: Encrypt`** or **`VSC Secure Notes: Decrypt`**
-4. Enter your password when prompted
-
-## Known Issues
-
-- None yet. Found a bug? [Open an issue](https://github.com/cipherswami/vscode-secure-notes/issues)
+1. Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`).
+2. Run **`VSC Secure Notes: Encrypt`** or **`VSC Secure Notes: Decrypt`** to operate on the whole note.
+3. Enter your password when prompted.
 
 ## Release Notes
 
@@ -35,7 +30,7 @@ Check [CHANGELOG.md](./CHANGELOG.md) for the full details.
 
 ## Related
 
-- 🔗 [Joplin Secure Notes Plugin](https://github.com/cipherswami/joplin-plugin-secure-notes) — the original plugin this is based on
+- 🔗 [Joplin Secure Notes Plugin](https://joplinapp.org/plugins/plugin/com.cipherswami.secure.notes) — the original plugin this is based on
 
 ## License
 
