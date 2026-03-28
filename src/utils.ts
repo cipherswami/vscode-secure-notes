@@ -1,3 +1,8 @@
+/*********************************************************************************
+ * @file        : src/utils.ts
+ * @description : All util functions for Secure Notes extension.
+ *********************************************************************************/
+
 import * as vscode from "vscode";
 import { AesOptions } from "./encryption";
 import { EXTENSION_ID } from "./extension";

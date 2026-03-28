@@ -1,8 +1,8 @@
 {
   "name": "vsc-secure-notes",
-  "displayName": "Secure Notes (Markdown)",
+  "displayName": "Secure Notes (MD)",
   "description": "Encrypt and protect MarkDown notes with a password.",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "publisher": "cipherswami",
   "icon": "media/logo.png",
   "categories": [
@@ -49,7 +49,7 @@
     "customEditors": [
       {
         "viewType": "secureNotes.editor",
-        "displayName": "Secure Notes",
+        "displayName": "SecureNotes Preview",
         "selector": [
           {
             "filenamePattern": "*.enc.md"

@@ -2,6 +2,18 @@
 
 All notable changes to the **Secure Notes** extension will be documented in this file.
 
+## [2.1.0] - 2026-03-29
+
+### Added
+
+- Tests for core crypto is added
+- Better logging messages and comments of the code added
+
+### Changed
+
+- Name changed to Secure Notes (MD)
+- Now normal markdown file with secure notes format can be decrypted
+
 ## [2.0.0] - 2026-03-28
 
 ### Added
@@ -18,6 +30,7 @@ All notable changes to the **Secure Notes** extension will be documented in this
 - Encryption/Decryption now changes the file extension (.enc.md <-> .md)
 - Better error handling for wrong passwords and invalid files
 - Improved validation for encrypted file format
+- Name changed to Secure Notes (Markdown)
 
 ### Fixed
 

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * @file        : src/extensionLogger.ts
+ * @file        : src/logger.ts
  * @description : Lightweight logger utility for Joplin plugins. Provides
  *                prefixed and level-based console output for easier debugging
  *                and log filtering.
@@ -43,19 +43,27 @@ export class Logger {
   }
 
   debug(...args: any[]): void {
-    if (this.shouldLog("DEBUG")) {console.debug(this.prefix, "DEBUG :", ...args);}
+    if (this.shouldLog("DEBUG")) {
+      console.debug(this.prefix, "DEBUG :", ...args);
+    }
   }
 
   info(...args: any[]): void {
-    if (this.shouldLog("INFO")) {console.info(this.prefix, "INFO  :", ...args);}
+    if (this.shouldLog("INFO")) {
+      console.info(this.prefix, "INFO  :", ...args);
+    }
   }
 
   warn(...args: any[]): void {
-    if (this.shouldLog("WARN")) {console.warn(this.prefix, "WARN  :", ...args);}
+    if (this.shouldLog("WARN")) {
+      console.warn(this.prefix, "WARN  :", ...args);
+    }
   }
 
   error(...args: any[]): void {
-    if (this.shouldLog("ERROR")) {console.error(this.prefix, "ERROR :", ...args);}
+    if (this.shouldLog("ERROR")) {
+      console.error(this.prefix, "ERROR :", ...args);
+    }
   }
 }
 
