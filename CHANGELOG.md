@@ -2,6 +2,12 @@
 
 All notable changes to the **Secure Notes** extension will be documented in this file.
 
+## [2.1.1] - 2026-03-29
+
+### Fixed
+
+- Issue #1, Windows caused regex failure bug because of CRLF, resolved using LF normalization.
+
 ## [2.1.0] - 2026-03-29
 
 ### Added

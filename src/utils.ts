@@ -40,12 +40,14 @@ ${encryptedData}
 export function validateFormat(
   body: string,
 ): { aesOptions: AesOptions; data: string } | null {
+  body = body.replace(/\r\n/g, "\n");
   const blockMatch = body.match(
     new RegExp(
       `^\\\`\\\`\\\`${EXTENSION_ID}\\n([\\s\\S]+?)\\n\\\`\\\`\\\`$`,
       "m",
     ),
   );
+
   if (!blockMatch) {
     return null;
   }

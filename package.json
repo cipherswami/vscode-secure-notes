@@ -2,7 +2,7 @@
   "name": "vsc-secure-notes",
   "displayName": "Secure Notes (MD)",
   "description": "Encrypt and protect MarkDown notes with a password.",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "publisher": "cipherswami",
   "icon": "media/logo.png",
   "categories": [
