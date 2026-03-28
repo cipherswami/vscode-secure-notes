@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+    default-src 'none';
+    img-src {{cspSource}} https: data:;
+    style-src {{cspSource}} 'unsafe-inline';
+    script-src 'nonce-{{nonce}}';
+    font-src {{cspSource}};
+  "
+    />
+
+    <link href="{{styleUri}}" rel="stylesheet" />
+    <link href="{{katexCssUri}}" rel="stylesheet" />
+    <title>Secure Notes</title>
+  </head>
+
+  <body>
+    <div class="sn-root">
+      <!-- 🔒 LOCK VIEW -->
+      <div id="sn-lock" class="sn-lock">
+        <h1 class="sn-title">🔒 Secure Notes</h1>
+
+        <div class="sn-form">
+          <input
+            id="password"
+            type="password"
+            placeholder="Enter password to view note"
+            autocomplete="off"
+          />
+          <button id="unlockBtn">Unlock</button>
+        </div>
+      </div>
+
+      <!-- 🔓 UNLOCK VIEW -->
+      <div id="sn-unlock" class="sn-unlock">
+        <div class="sn-unlock-info">
+          🔒 Secure View: This is Read-only, Decrypt to edit.
+        </div>
+
+        <div class="sn-editor-box">
+          <div id="editor" class="sn-editor" contenteditable="false"></div>
+        </div>
+      </div>
+    </div>
+
+    <script nonce="{{nonce}}" src="{{scriptUri}}"></script>
+  </body>
+</html>

@@ -1,10 +1,9 @@
 import * as vscode from "vscode";
 import { AesOptions } from "./encryption";
-
-const PLUGIN_ID = "SecureNotes";
+import { EXTENSION_ID } from "./extension";
 
 /**
- * Function to generate codeFence.
+ * Function to generate encrypted note format.
  * @param body - The body to parse
  * @param blockName - Block Name to verify
  * @returns True if block name is present in body
@@ -13,7 +12,7 @@ export async function generateEncryptedNote(
   aesOptions: AesOptions,
   encryptedData: string,
 ) {
-  const secureNotesBlock = `\`\`\`${PLUGIN_ID}
+  const secureNotesBlock = `\`\`\`${EXTENSION_ID}
 ## Info
 This is an encrypted note, use VSC Secure Notes extension to decrypt the note.
 
@@ -37,7 +36,10 @@ export function validateFormat(
   body: string,
 ): { aesOptions: AesOptions; data: string } | null {
   const blockMatch = body.match(
-    new RegExp(`^\\\`\\\`\\\`${PLUGIN_ID}\\n([\\s\\S]+?)\\n\\\`\\\`\\\`$`, "m"),
+    new RegExp(
+      `^\\\`\\\`\\\`${EXTENSION_ID}\\n([\\s\\S]+?)\\n\\\`\\\`\\\`$`,
+      "m",
+    ),
   );
   if (!blockMatch) {
     return null;
@@ -70,13 +72,14 @@ export function validateFormat(
 }
 
 /**
- * Funtion to fetch AesOptions form the VS Code settings.
+ * Function to fetch AES options from VS Code settings.
  * @returns AesOptions
  */
 export function getAesOptions(): AesOptions {
   const config = vscode.workspace.getConfiguration("vsc-secure-notes");
+
   return {
-    AesMode: config.get<"AES-GCM">("aesMode", "AES-GCM"),
-    KeySize: config.get<128 | 256>("keySize", 256),
+    AesMode: config.get<AesOptions["AesMode"]>("aesMode", "AES-GCM"),
+    KeySize: config.get<AesOptions["KeySize"]>("keySize", 256),
   };
 }

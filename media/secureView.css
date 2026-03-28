@@ -1,0 +1,277 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  background: var(--vscode-editor-background);
+  color: var(--vscode-editor-foreground);
+  font-family: var(--vscode-font-family);
+}
+
+/* Root */
+.sn-root {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* 🔒 LOCK VIEW */
+.sn-lock {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 90%;
+  max-width: 420px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sn-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 45px;
+}
+
+/* Form */
+.sn-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sn-form input {
+  padding: 10px;
+  text-align: center;
+
+  background: var(--vscode-input-background);
+  border: 1px solid var(--vscode-input-border);
+  color: var(--vscode-input-foreground);
+
+  border-radius: 4px;
+  outline: none;
+}
+
+.sn-form button {
+  padding: 6px 16px;
+
+  background: var(--vscode-button-background);
+  color: var(--vscode-button-foreground);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+  width: 40%; /* 👈 key */
+  align-self: center; /* 👈 center it */
+}
+
+.sn-form button:hover {
+  background: var(--vscode-button-hoverBackground);
+}
+
+/* 🔓 UNLOCK VIEW */
+.sn-unlock {
+  display: none;
+  height: 100%;
+  flex-direction: column;
+}
+
+.sn-unlock-info {
+  padding: 6px;
+  text-align: center;
+  font-size: 12px;
+
+  background: var(--vscode-editorGroupHeader-tabsBackground);
+  border-bottom: 1px solid var(--vscode-editorGroup-border);
+}
+
+.sn-editor-box {
+  flex: 1;
+  overflow: auto;
+}
+
+.sn-editor {
+  padding: 45px;
+  font-family: monospace;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+/* Error + animation */
+@keyframes jiggle {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-6px);
+  }
+  40% {
+    transform: translateX(6px);
+  }
+  60% {
+    transform: translateX(-4px);
+  }
+  80% {
+    transform: translateX(4px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.error {
+  border-color: #e05c5c !important;
+}
+
+.jiggle {
+  animation: jiggle 0.3s ease;
+}
+
+/* Markdown – match VS Code preview */
+
+/* Headings */
+.sn-editor h1 {
+  font-size: 26px;
+  font-weight: 600;
+  margin: 0 0 16px;
+  padding-bottom: 6px;
+
+  border-bottom: 1px solid var(--vscode-editorWidget-border);
+}
+
+.sn-editor h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 24px 0 12px;
+  padding-bottom: 4px;
+
+  border-bottom: 1px solid var(--vscode-editorWidget-border);
+}
+
+.sn-editor h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 20px 0 6px;
+}
+
+/* Paragraphs */
+.sn-editor p {
+  margin: 6px 0;
+}
+
+/* HR (this was very off before) */
+.sn-editor hr {
+  border: none;
+  border-top: 1px solid var(--vscode-editorWidget-border);
+  margin: 16px 0;
+}
+
+/* Inline code */
+.sn-editor code {
+  font-family: var(--vscode-editor-font-family);
+  font-size: 13px;
+  padding: 1px 4px;
+  border-radius: 3px;
+  background: var(--vscode-textCodeBlock-background);
+}
+
+/* Code blocks */
+.sn-editor pre {
+  padding: 10px;
+  border-radius: 4px;
+  overflow-x: auto;
+  background: var(--vscode-textCodeBlock-background);
+}
+
+/* Blockquotes */
+.sn-editor blockquote {
+  margin: 8px 0;
+  padding: 0 12px;
+  border-left: 3px solid var(--vscode-textBlockQuote-border);
+  background: transparent;
+}
+
+/* Task list checkbox */
+.sn-editor input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+
+  width: 14px;
+  height: 14px;
+
+  border: 1px solid var(--vscode-editorWidget-border);
+  border-radius: 3px;
+
+  background: transparent;
+  cursor: default;
+
+  position: relative;
+  margin-right: 6px;
+}
+
+/* checked state */
+.sn-editor input[type="checkbox"]:checked {
+  background: var(--vscode-checkbox-background);
+  border-color: var(--vscode-checkbox-border);
+}
+
+/* check mark */
+.sn-editor input[type="checkbox"]:checked::after {
+  content: "✔";
+  font-size: 10px;
+  position: absolute;
+  top: -1px;
+  left: 2px;
+  color: var(--vscode-checkbox-foreground);
+}
+
+/* Lists */
+.sn-editor ul,
+.sn-editor ol {
+  margin: 8px 0;
+  padding-left: 40px;
+}
+
+.sn-editor li {
+  margin: 2px 0;
+}
+
+/* Math */
+.katex-display {
+  margin: 12px 0;
+  text-align: center;
+}
+
+/** Table */
+.sn-editor table {
+  border-collapse: collapse;
+  margin: 16px 0;
+  width: 100%;
+}
+
+.sn-editor th,
+.sn-editor td {
+  border: 1px solid var(--vscode-editorWidget-border);
+  padding: 6px 12px;
+  text-align: left;
+}
+
+.sn-editor th {
+  font-weight: 600;
+}
+
+/* subtle row separation like VS Code */
+.sn-editor tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.sn-editor thead tr {
+  border-bottom: 2px solid var(--vscode-editorWidget-border);
+}

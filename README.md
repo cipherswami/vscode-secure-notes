@@ -1,14 +1,16 @@
-# VSC Secure Notes
+# Secure Notes
 
-A VS Code port of the [Joplin Secure Notes plugin](https://github.com/cipherswami/joplin-plugin-secure-notes) — bring password-based note encryption straight into your editor.
+Secure Notes is a VS Code port of the Joplin plugin [Secure Notes](https://github.com/cipherswami/joplin-plugin-secure-notes), bringing password-based note encryption to your Markdown notes straight into your editor.
+
+Protect your sensitive thoughts, credentials, and private notes — all within VS Code, without leaving your workflow.
 
 ## Features
 
-- 🔐 **Encrypt** - Encrypt any file with a password of your choice
-- 🔓 **Decrypt** - Decrypt the encrypted file back to normal
-- 🛡️ **Strong Encryption** — Uses industry-standard AES encryption
-- ⚡ Works fully offline, your data stays on your machine
-- 🔁 Consistent behavior with the Joplin Secure Notes plugin
+- 🔐 Encrypt `.md` files → `.enc.md`
+- 🔓 Decrypt `.enc.md` → `.md`
+- 🧠 Secure view (Decrypted in RAM, never touches the disk)
+- 🛡️ AES encryption: (GCM, CTR, CBC) with (128 / 256)
+- ⚡ Fully offline
 
 ## Disclaimer
 
@@ -20,9 +22,19 @@ A VS Code port of the [Joplin Secure Notes plugin](https://github.com/cipherswam
 
 ## Usage
 
-1. Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`).
-2. Run **`VSC Secure Notes: Encrypt`** or **`VSC Secure Notes: Decrypt`** to operate on the whole note.
-3. Enter your password when prompted.
+### 🔐 Encrypt (Lock icon)
+
+- Open a `.md` file
+- Click the **🔒 Lock icon** in the editor title _or_ run:
+  `Secure Notes: Encrypt`
+- Enter password
+
+### 🔓 Decrypt (Unlock icon)
+
+- Open a `.enc.md` file
+- Click the **🔓 Unlock icon** _or_ run:
+  `Secure Notes: Decrypt`
+- Enter password
 
 ## Release Notes
 

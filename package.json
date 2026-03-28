@@ -1,19 +1,21 @@
 {
   "name": "vsc-secure-notes",
-  "displayName": "VSC Secure Notes",
-  "description": "Password protect and encrypt your notes locally.",
-  "version": "1.1.0",
+  "displayName": "Secure Notes (Markdown)",
+  "description": "Encrypt and protect MarkDown notes with a password.",
+  "version": "2.0.0",
   "publisher": "cipherswami",
-  "icon": "assets/logo.png",
+  "icon": "media/logo.png",
   "categories": [
+    "Notebooks",
     "Other"
   ],
   "keywords": [
     "Secure Notes",
-    "Joplin port",
+    "Markdown",
     "security",
-    "encryption",
-    "password"
+    "password",
+    "encrypted",
+    "AES"
   ],
   "homepage": "https://github.com/cipherswami/vscode-secure-notes",
   "repository": {
@@ -27,21 +29,51 @@
   "engines": {
     "vscode": "^1.110.0"
   },
-  "activationEvents": [],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
         "command": "vsc-secure-notes.encrypt",
-        "title": "VSC Secure Notes: Encrypt"
+        "title": "Secure Notes: Encrypt",
+        "icon": "$(lock)"
       },
       {
         "command": "vsc-secure-notes.decrypt",
-        "title": "VSC Secure Notes: Decrypt"
+        "title": "Secure Notes: Decrypt",
+        "icon": "$(unlock)"
       }
     ],
+    "customEditors": [
+      {
+        "viewType": "secureNotes.editor",
+        "displayName": "Secure Notes",
+        "selector": [
+          {
+            "filenamePattern": "*.enc.md"
+          }
+        ],
+        "priority": "default"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "vsc-secure-notes.encrypt",
+          "when": "resourceExtname == .md && !(resourceFilename =~ /\\.enc\\.md$/)",
+          "group": "navigation"
+        },
+        {
+          "command": "vsc-secure-notes.decrypt",
+          "when": "resourceFilename =~ /\\.enc\\.md$/",
+          "group": "navigation"
+        }
+      ]
+    },
     "configuration": {
-      "title": "VSC Secure Notes",
+      "title": "Secure Notes",
       "properties": {
         "vsc-secure-notes.aesMode": {
           "type": "string",
@@ -51,7 +83,7 @@
             "AES-CTR",
             "AES-CBC"
           ],
-          "description": "AES mode used when encrypting notes."
+          "description": "AES encryption modes."
         },
         "vsc-secure-notes.keySize": {
           "type": "number",
@@ -80,15 +112,22 @@
     "test": "vscode-test"
   },
   "devDependencies": {
+    "@types/markdown-it": "^14.1.2",
     "@types/mocha": "^10.0.10",
     "@types/node": "22.x",
     "@types/vscode": "^1.110.0",
-    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-cli": "^0.0.11",
     "@vscode/test-electron": "^2.5.2",
     "esbuild": "^0.27.4",
     "eslint": "^9.39.3",
     "npm-run-all": "^4.1.5",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.56.1"
+  },
+  "dependencies": {
+    "@vscode/markdown-it-katex": "^1.1.2",
+    "markdown-it": "^14.1.1",
+    "markdown-it-multimd-table": "^4.2.3",
+    "markdown-it-task-lists": "^2.1.1"
   }
 }
