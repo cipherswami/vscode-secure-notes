@@ -2,6 +2,12 @@
 
 All notable changes to the **Secure Notes** extension will be documented in this file.
 
+## [2.2.0] - 2026-03-30
+
+### Added
+
+- New command: [Secure Notes: Open Preview]
+
 ## [2.1.1] - 2026-03-29
 
 ### Fixed

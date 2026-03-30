@@ -29,6 +29,23 @@ export function activate(context: vscode.ExtensionContext) {
   logger.info("Extension started!");
 
   /**
+   * Tries to open any note in Secure View.
+   */
+  const openSecureView = vscode.commands.registerCommand(
+    "vsc-secure-notes.openPreview",
+    async () => {
+      const editor = vscode.window.activeTextEditor;
+      if (!editor) return;
+
+      await vscode.commands.executeCommand(
+        "vscode.openWith",
+        editor.document.uri,
+        "secureNotes.editor",
+      );
+    },
+  );
+
+  /**
    * Command: Encrypts the currently active document
    * and converts it into a secure encrypted format.
    */
@@ -224,7 +241,7 @@ export function activate(context: vscode.ExtensionContext) {
    * Register all disposables (commands and providers)
    * to ensure proper cleanup during extension deactivation.
    */
-  context.subscriptions.push(encryptNote, decryptNote);
+  context.subscriptions.push(encryptNote, decryptNote, openSecureView);
   context.subscriptions.push(
     SecureNotesEditorProvider.register(context, logger),
   );
